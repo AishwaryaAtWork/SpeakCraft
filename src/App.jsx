@@ -1,7 +1,15 @@
 import React from 'react';
-// import SpeechRecognition , {useSpeechReco}
+import SpeechRecognition , { useSpeechRecognition } from 'react-speech-recognition';
 
 const App = () =>{
+
+  SpeechRecognition.startListening({continuous: true});
+  const { transcript, browserSupportsSpeechRecognition } = useSpeechRecognition();
+
+  if(!browserSupportsSpeechRecognition){
+    return null;
+  }
+
   return (
     <>
        <div className='container'>
@@ -9,7 +17,7 @@ const App = () =>{
           <p>A <strong>Speech To Text</strong> Converter Application.</p>
 
           <div className="main-content">
-
+            {transcript}
           </div>
 
           <div className="btn-style">
